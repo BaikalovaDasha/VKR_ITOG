@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{A726B801-C965-4AD0-895D-55545806F1C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAPI", "OpenAPI\OpenAPI.csproj", "{11D5F5FB-88F8-44CB-8245-843A1480AC3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculationModel", "CalculationModel\CalculationModel.csproj", "{96528087-D176-4322-BBF3-AE2D7AF09808}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{A726B801-C965-4AD0-895D-55545806F1C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A726B801-C965-4AD0-895D-55545806F1C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A726B801-C965-4AD0-895D-55545806F1C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11D5F5FB-88F8-44CB-8245-843A1480AC3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D5F5FB-88F8-44CB-8245-843A1480AC3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D5F5FB-88F8-44CB-8245-843A1480AC3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D5F5FB-88F8-44CB-8245-843A1480AC3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96528087-D176-4322-BBF3-AE2D7AF09808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96528087-D176-4322-BBF3-AE2D7AF09808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96528087-D176-4322-BBF3-AE2D7AF09808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96528087-D176-4322-BBF3-AE2D7AF09808}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
