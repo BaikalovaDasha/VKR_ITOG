@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CalculationModel
 {
+    /// <summary>
+    /// Класс для расчёта потребления мощности в зависимости от наружного воздуха.
+    /// </summary>
     public class CalculPowerConsumption
     {
         /// <summary>
@@ -27,7 +30,7 @@ namespace CalculationModel
         /// <param name="tempCalcul">расчётное значение температуры.</param>
         /// <param name="tempInit">исходное значение температуры.</param>
         /// <param name="pInit">исходное значение мощности.</param>
-        public double GetPowerMax(double tempCalcul, double tempInit, double pInit)
+        public static double GetPowerMax1(double tempCalcul, double tempInit, double pInit)
         {
             ExcelHandler.GetParamFromExcel paramFromExcel = new();
 
@@ -65,6 +68,45 @@ namespace CalculationModel
             return pCalaul;
         }
 
+        /// <summary>
+        /// Метод перерасчёта потребления мощности в зависимости от наружного воздуха.
+        /// </summary>
+        /// <param name="tempCalcul">расчётное значение температуры.</param>
+        /// <param name="tempInit">исходное значение температуры.</param>
+        /// <param name="pInit">исходное значение мощности.</param>
+        public static double GetPowerMax(double tempCalcul, double tempInit, double pInit, Dictionary<string, double> dictionaryKoef, List<double[]> excelarray)
+        {
+            double pCalaul = pInit;
+
+            foreach (var item in excelarray)
+            {
+                double koef = item[2];
+
+                if (tempCalcul > item[0] && tempCalcul < item[1])
+                {
+
+                    if (tempInit == dictionaryKoef["tsrSIPR"])
+                    {
+                        pCalaul = CalculatePower(pCalaul, tempCalcul, tempInit, koef);
+                        break;
+                    }
+                    else
+                    {
+                        pCalaul = CalculatePower(pCalaul, tempCalcul, item[0], koef);
+                        break;
+                    }
+
+                }
+                else
+                {
+                    pCalaul = CalculatePower(pCalaul, item[1], tempInit, koef);
+                    tempInit = excelarray[excelarray.IndexOf(item) + 1][0];
+                }
+            }
+
+            return pCalaul;
+        }
+
 
 
         /// <summary>
@@ -80,24 +122,28 @@ namespace CalculationModel
             return pInit * k;
         }
 
-        public double[] CalculatePowerConsumption(int pInit)
+        public static double[] CalculatePowerConsumption(int pInit)
         {
-            Dictionary<string, double> dictionaryKoef = GetkoefToES();
+            ExcelHandler.GetParamFromExcel paramFromExcel = new();
+
+            Dictionary<string, double> dictionaryKoef = paramFromExcel.GetkoefToES();
+
+            List<double[]> excelArrayKoef = paramFromExcel.FindExcelArray1();
 
             double[] arrayPower = new double[7];
 
-            double pMaxZima092 = GetPowerMax(dictionaryKoef["tZima0.92"], dictionaryKoef["tsrSIPR"], pInit);
-            double pMaxZimaGOST = GetPowerMax(dictionaryKoef["tGOST"], dictionaryKoef["tsrSIPR"], pInit);
+            double pMaxZima092 = GetPowerMax(dictionaryKoef["tZima0.92"], dictionaryKoef["tsrSIPR"], pInit, dictionaryKoef, excelArrayKoef);
+            double pMaxZimaGOST = GetPowerMax(dictionaryKoef["tGOST"], dictionaryKoef["tsrSIPR"], pInit, dictionaryKoef, excelArrayKoef);
             double pMinZima092 = Powerkoef(pMaxZima092, dictionaryKoef["kZimaMinMax"]);
             double pMinZimaGOST = Powerkoef(pMaxZimaGOST, dictionaryKoef["kZimaMinMax"]);
 
             double pMaxLetoCalcul = Powerkoef(pInit, dictionaryKoef["kLZMax"]);
 
-            double pMaxLeto098 = GetPowerMax(dictionaryKoef["tLeto0.98"], dictionaryKoef["tsrSIPR"], pMaxLetoCalcul);
-            double pMaxLetoNorm = GetPowerMax(dictionaryKoef["tLetoNorm"], dictionaryKoef["tsrSIPR"], pMaxLetoCalcul);
+            double pMaxLeto098 = GetPowerMax(dictionaryKoef["tLeto0.98"], dictionaryKoef["tsrSIPR"], pMaxLetoCalcul, dictionaryKoef, excelArrayKoef);
+            double pMaxLetoNorm = GetPowerMax(dictionaryKoef["tLetoNorm"], dictionaryKoef["tsrSIPR"], pMaxLetoCalcul, dictionaryKoef, excelArrayKoef);
             double pMinLetoNorm = Powerkoef(pMaxLetoNorm, dictionaryKoef["kLetoMinMax"]);
 
-            arrayPower[0] = pMinZima092;
+            arrayPower[0] = pMaxZima092;
             arrayPower[1] = pMaxZimaGOST;
             arrayPower[2] = pMinZima092;
             arrayPower[3] = pMinZimaGOST;

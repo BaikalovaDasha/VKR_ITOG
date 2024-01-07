@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CalculationModel\CalculationModel.csproj" />
+    <ProjectReference Include="..\ExcelHandler\ExcelHandler.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 

@@ -17,6 +17,13 @@ namespace View
                 new SolarPowerPlant(8, "Полевая", StatusSPP.entered, 60303105, PowerSystem.Zabaikalskaya, 141),
                 new SolarPowerPlant(9, "Майдари", StatusSPP.entered, 60303104, PowerSystem.Zabaikalskaya, 210)
             };
+
+            ExcelHandler.GetParamFromExcel lisrArray = new();
+            lisrArray.FindExcelArray1();
+
+            CalculationModel.CalculPowerConsumption calculPowerConsumption = new();
+
+            CalculationModel.CalculPowerConsumption.CalculatePowerConsumption(1578);
         }
     }
 }

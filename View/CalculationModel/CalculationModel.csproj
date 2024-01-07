@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ExcelHandler\ExcelHandler.csproj" />
     <ProjectReference Include="..\OpenAPI\OpenAPI.csproj" />
   </ItemGroup>
 
