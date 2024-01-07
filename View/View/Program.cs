@@ -1,4 +1,5 @@
-﻿namespace View
+﻿using Model;
+namespace View
 {
     internal class Program
     {

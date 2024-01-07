@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAPI", "OpenAPI\OpenAPI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculationModel", "CalculationModel\CalculationModel.csproj", "{96528087-D176-4322-BBF3-AE2D7AF09808}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelHandler", "ExcelHandler\ExcelHandler.csproj", "{885FD9C4-3620-4730-BEFE-78240D9EDB85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{96528087-D176-4322-BBF3-AE2D7AF09808}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96528087-D176-4322-BBF3-AE2D7AF09808}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96528087-D176-4322-BBF3-AE2D7AF09808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{885FD9C4-3620-4730-BEFE-78240D9EDB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{885FD9C4-3620-4730-BEFE-78240D9EDB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{885FD9C4-3620-4730-BEFE-78240D9EDB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{885FD9C4-3620-4730-BEFE-78240D9EDB85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
